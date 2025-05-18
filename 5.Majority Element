@@ -1,0 +1,36 @@
+Majority Element
+
+Given an array nums of size n, return the majority element.
+
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: 3
+
+
+//boyer moore voting algorithm -> majority element will always survive
+//agr count zero hai toh candidate bnado nums ko 
+// nums is equal candidate toh bdha do count vote ka else count --
+
+int majorityElement(vector<int>& nums) {
+        int count = 0;
+        int candidate = -1;
+        
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            if(count == 0)
+            {
+                candidate = nums[i];
+            }
+            
+            if(nums[i] == candidate)
+            count += 1;
+                else
+                    count = count -1 ;
+        }
+        return candidate;
+    }
