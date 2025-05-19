@@ -1,0 +1,97 @@
+Reverse Words in a String
+
+Given an input string s, reverse the order of the words.
+
+A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+
+Return a string of the words in reverse order concatenated by a single space.
+
+Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+
+ 
+
+Example 1:
+
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+
+
+Solution -> 
+
+class Solution {
+public:
+    string reverseWords(string s) {
+       
+        //optimized approach
+        
+        string temp;
+        string ans;
+        
+        int left = 0;
+        int right = s.length() - 1;
+
+        while(left <= right){
+            
+            char ch = s[left];
+            
+            //agr space nhi hai toh temp mei daldo
+            if(ch != ' ') temp += ch;
+             
+            //space agyi mtlb word khtm hogya
+            else if(ch == ' ' && temp != "")
+            {
+                //ans mei agr kuch hai toh temp mei space add krke ans ke ageh add krdo
+                if(ans != "") 
+                    ans = temp + " " + ans;
+                else 
+                    ans = temp;
+                
+                //ans mei daaldiya word(temp) ab usko phir se empty krdenge
+                temp = "";
+            }
+            left ++;
+        }
+        
+        //last word ke liya
+        if(temp != "")
+            {
+                if(ans != "") ans = temp + " " + ans;
+                else ans = temp;
+            }
+            
+        
+        return ans;
+    }
+        
+//        string temp = "";
+//        stack<string>st;
+        
+//        for(int i=0; i<s.size();i++){
+//            char ch = s[i];
+           
+//            if(ch == ' '){
+//                //if there are multiple spaces in the begining or end ....temp will be empty 
+//                if(temp != "")
+//                    st.push(temp);
+//                temp = "";
+//            }
+
+//            else
+//             temp+=ch;
+//        }
+
+//         //for the last word
+//        if(temp!=""){
+//            st.push(temp);
+//        }
+//        string ans = "";
+
+//        while(!st.empty()){
+//            ans+=(st.top()+" ");
+//            st.pop();
+//        }
+//        ans.pop_back();
+
+//        return ans;
+    // }
+};
